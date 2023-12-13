@@ -15,7 +15,7 @@ class NoteItem extends StatelessWidget {
         padding: const EdgeInsets.only(
           left: 16,
           top: 16,
-          bottom: 16,
+          bottom: 24,
         ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.end,
@@ -43,7 +43,7 @@ class NoteItem extends StatelessWidget {
               ),
             ),
             Padding(
-              padding: const EdgeInsets.only(right: 16),
+              padding: const EdgeInsets.only(right: 16, top: 16),
               child: Text("May 21, 2021",
                   style: TextStyle(color: Colors.black.withOpacity(.7))),
             ),

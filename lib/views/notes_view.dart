@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'widgets/item_note.dart';
+import 'widgets/note_list_view.dart';
 import 'widgets/notes_appbar.dart';
 
 class NotesView extends StatelessWidget {
@@ -12,7 +13,7 @@ class NotesView extends StatelessWidget {
     return const Scaffold(
       body: Padding(
         padding: EdgeInsets.symmetric(horizontal: 24),
-        child: const Column(
+        child: Column(
           children: [
             SizedBox(
               height: 50,
@@ -21,7 +22,7 @@ class NotesView extends StatelessWidget {
             SizedBox(
               height: 40,
             ),
-            NoteItem(),
+            NoteListView()
           ],
         ),
       ),
