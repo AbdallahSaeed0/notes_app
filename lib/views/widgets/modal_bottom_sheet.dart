@@ -7,6 +7,7 @@ import 'note_form.dart';
 
 Future<dynamic> ModalBottomSheet(BuildContext context) {
   return showModalBottomSheet(
+      isScrollControlled: true,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
       context: context,
       builder: (index) {
@@ -26,7 +27,10 @@ Future<dynamic> ModalBottomSheet(BuildContext context) {
               return AbsorbPointer(
                 absorbing: state is AddnoteLoading ? true : false,
                 child: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 24),
+                  padding: EdgeInsets.only(
+                      left: 16,
+                      right: 16,
+                      bottom: MediaQuery.of(context).viewInsets.bottom),
                   child: SingleChildScrollView(child: NoteForm()),
                 ),
               );
