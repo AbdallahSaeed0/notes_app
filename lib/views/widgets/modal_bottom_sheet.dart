@@ -16,23 +16,21 @@ Future<dynamic> ModalBottomSheet(BuildContext context) {
       builder: (index) {
         return Padding(
           padding: const EdgeInsets.symmetric(horizontal: 24),
-          child: SingleChildScrollView(
-            child: BlocConsumer<AddnoteCubit, AddnoteState>(
-              listener: (context, state) {
-                if (state is AddnoteFaliure) {
-                  print('failied ${state.erormessage}');
-                }
+          child: BlocConsumer<AddnoteCubit, AddnoteState>(
+            listener: (context, state) {
+              if (state is AddnoteFaliure) {
+                print('failied ${state.erormessage}');
+              }
 
-                if (state is AddnoteSuccess) {
-                  Navigator.pop(context);
-                }
-              },
-              builder: (context, state) {
-                return ModalProgressHUD(
-                    inAsyncCall: state is AddnoteLoading ? true : false,
-                    child: NoteForm());
-              },
-            ),
+              if (state is AddnoteSuccess) {
+                Navigator.pop(context);
+              }
+            },
+            builder: (context, state) {
+              return ModalProgressHUD(
+                  inAsyncCall: state is AddnoteLoading ? true : false,
+                  child: SingleChildScrollView(child: NoteForm()));
+            },
           ),
         );
       });

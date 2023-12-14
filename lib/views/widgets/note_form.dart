@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:notes_app/views/models/note_model.dart';
 
 import 'custom_button.dart';
 import 'custom_text_field.dart';
@@ -52,6 +53,11 @@ class _NoteFormState extends State<NoteForm> {
             ontap: () {
               if (formkey.currentState!.validate()) {
                 formkey.currentState!.save();
+                var notemodel = NoteModel(
+                    title: title!,
+                    content: subtitle!,
+                    date: DateTime.now().toString(),
+                    color: Colors.blue.value);
               } else {
                 autovalidatemode = AutovalidateMode.always;
               }
