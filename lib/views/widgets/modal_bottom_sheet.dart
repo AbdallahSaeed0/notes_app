@@ -23,9 +23,12 @@ Future<dynamic> ModalBottomSheet(BuildContext context) {
               }
             },
             builder: (context, state) {
-              return Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 24),
-                child: SingleChildScrollView(child: NoteForm()),
+              return AbsorbPointer(
+                absorbing: state is AddnoteLoading ? true : false,
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 24),
+                  child: SingleChildScrollView(child: NoteForm()),
+                ),
               );
             },
           ),
