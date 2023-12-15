@@ -1,12 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:notes_app/views/cubits/cubit/note_cubit.dart';
 
+import '../models/note_model.dart';
 import '../note_edit_view.dart';
 
 class NoteItem extends StatelessWidget {
   const NoteItem({
     super.key,
+    required this.note,
   });
+
+  final NoteModel note;
 
   @override
   Widget build(BuildContext context) {
@@ -15,7 +21,9 @@ class NoteItem extends StatelessWidget {
         Navigator.push(
           context,
           MaterialPageRoute(builder: (context) {
-            return NoteEditView();
+            return NoteEditView(
+              note: note,
+            );
           }),
         );
       },
@@ -33,20 +41,23 @@ class NoteItem extends StatelessWidget {
             children: [
               ListTile(
                 title: Text(
-                  "HeadLine Note",
+                  note.title,
                   style: TextStyle(
                       color: Colors.black.withOpacity(.7), fontSize: 26),
                 ),
                 subtitle: Padding(
                   padding: const EdgeInsets.only(top: 16),
                   child: Text(
-                    "Desc for the Note and other words to fill the space",
+                    note.content,
                     style: TextStyle(
                         color: Colors.black.withOpacity(.7), fontSize: 16),
                   ),
                 ),
                 trailing: IconButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    note.delete();
+                    BlocProvider.of<NoteCubit>(context).fetchAllNotes();
+                  },
                   icon: const Icon(
                     FontAwesomeIcons.trash,
                     color: Colors.black,
@@ -55,7 +66,7 @@ class NoteItem extends StatelessWidget {
               ),
               Padding(
                 padding: const EdgeInsets.only(right: 16, top: 16),
-                child: Text("May 21, 2021",
+                child: Text(note.date,
                     style: TextStyle(color: Colors.black.withOpacity(.7))),
               ),
             ],

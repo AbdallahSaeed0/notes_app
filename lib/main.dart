@@ -7,6 +7,7 @@ import 'package:notes_app/views/notes_view.dart';
 import 'package:notes_app/views/simble_bloc_obs.dart';
 
 import 'views/constants.dart';
+import 'views/cubits/cubit/note_cubit.dart';
 
 void main() async {
   await Hive.initFlutter();
@@ -21,16 +22,19 @@ class NotesApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        brightness: Brightness.dark,
-        fontFamily: 'Poppins',
+    return BlocProvider(
+      create: (context) => NoteCubit(),
+      child: MaterialApp(
+        debugShowCheckedModeBanner: false,
+        theme: ThemeData(
+          brightness: Brightness.dark,
+          fontFamily: 'Poppins',
+        ),
+        routes: {
+          NotesView().id: (context) => NotesView(),
+        },
+        initialRoute: NotesView().id,
       ),
-      routes: {
-        NotesView().id: (context) => NotesView(),
-      },
-      initialRoute: NotesView().id,
     );
   }
 }
