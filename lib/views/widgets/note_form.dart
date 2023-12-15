@@ -1,9 +1,12 @@
+// ignore_for_file: prefer_const_constructors
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
 import 'package:notes_app/views/cubits/cubit/addnote_cubit.dart';
 import 'package:notes_app/views/models/note_model.dart';
 
+import 'colors_listview.dart';
 import 'custom_button.dart';
 import 'custom_text_field.dart';
 
@@ -49,6 +52,10 @@ class _NoteFormState extends State<NoteForm> {
               subtitle = value;
             },
           ),
+          const SizedBox(
+            height: 10,
+          ),
+          ListColors(),
           const SizedBox(
             height: 32,
           ),
